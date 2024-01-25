@@ -11,8 +11,9 @@ class SpaceSpecialStage extends StatefulWidget {
 }
 
 class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
-
   final AudioPlayer _bgmPlayer = AudioPlayer();
+
+  bool isMuted = false;
 
   final List<String> imageUrls = [
     'https://img.game8.jp/3896163/4419891967e03e46d6247e9989e26b76.jpeg/show',
@@ -37,6 +38,20 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
     super.dispose();
   }
 
+  void onRepeatIconPressed() {
+    setState(() {
+      isMuted = !isMuted;
+      isMuted ? _bgmPlayer.pause() : _bgmPlayer.resume();
+    });
+  }
+
+  IconButton muteButton() {
+    return IconButton(
+      icon: isMuted ? const Icon(Icons.volume_off) : const Icon(Icons.volume_up),
+      onPressed: onRepeatIconPressed,
+    );
+  }
+
   _showChapterDialog() {
     showDialog(
       context: context,
@@ -47,7 +62,6 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // 第一章の処理を追加
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpaceSpecialStage()),
@@ -57,7 +71,6 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第二章の処理を追加
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpaceSpecialStage2()),
@@ -67,13 +80,18 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第三章の処理を追加
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpaceSpecialStage3()),
                   );
                 },
                 child: const Text('レジェンドEXステージ'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  muteButton(),
+                ],
               ),
             ],
           ),
@@ -110,7 +128,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              'assets/宇宙.png', // 背景画像のURLを指定
+              'assets/宇宙.png',
             ),
             fit: BoxFit.cover,
           ),
@@ -131,8 +149,8 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
               for (String imageUrl in imageUrls)
                 Image.network(
                   imageUrl,
-                  height: 50, // 適切な高さを設定
-                  width: 50, // 適切な幅を設定
+                  height: 50,
+                  width: 50,
                 ),
             ],
           ),
