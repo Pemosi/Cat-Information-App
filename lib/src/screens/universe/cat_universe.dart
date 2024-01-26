@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/universe/cat_universe2.dart';
 import 'package:nyan_cat_war/src/screens/universe/cat_universe3.dart';
+import 'package:provider/provider.dart';
 
 class SpacePage extends StatefulWidget {
   const SpacePage({super.key});
@@ -78,10 +80,14 @@ class _SpacePageState extends State<SpacePage> {
   final AudioPlayer _bgmPlayer = AudioPlayer();
 
   @override
-  void initState() {
-    super.initState();
-    _bgmPlayer.play(AssetSource('ビックバン組曲.mp3'));
-    _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('ビックバン組曲.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
   }
 
   @override
@@ -101,7 +107,7 @@ class _SpacePageState extends State<SpacePage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // 第一章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage()),
@@ -111,7 +117,7 @@ class _SpacePageState extends State<SpacePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第二章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage2()),
@@ -121,7 +127,7 @@ class _SpacePageState extends State<SpacePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第三章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage3()),

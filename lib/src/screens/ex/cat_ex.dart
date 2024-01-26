@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/ex/cat_ex2.dart';
 import 'package:nyan_cat_war/src/screens/ex/cat_ex3.dart';
+import 'package:provider/provider.dart';
 
 class SpaceSpecialStage extends StatefulWidget {
   const SpaceSpecialStage({super.key});
@@ -23,10 +25,14 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    _bgmPlayer.play(AssetSource('スターフィリバスター.mp3'));
-    _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('スターフィリバスター.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
   }
 
   @override

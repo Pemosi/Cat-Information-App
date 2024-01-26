@@ -1,5 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
+import 'package:nyan_cat_war/src/screens/world/cat_wd2.dart';
+import 'package:nyan_cat_war/src/screens/world/cat_wd3.dart';
+import 'package:provider/provider.dart';
 
 class WorldPage extends StatefulWidget {
   const WorldPage({super.key});
@@ -77,10 +81,14 @@ class _WorldPageState extends State<WorldPage> {
   final AudioPlayer _bgmPlayer = AudioPlayer();
 
   @override
-  void initState() {
-    super.initState();
-    _bgmPlayer.play(AssetSource('アポロ決戦.mp3'));
-    _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('アポロ決戦.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
   }
 
   @override
@@ -90,12 +98,70 @@ class _WorldPageState extends State<WorldPage> {
     super.dispose(); 
   }
 
+  _showChapterDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ここから章を変更できます！'),
+          content: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WorldPage()),
+                  );
+                },
+                child: const Text('第一章'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WorldPage2()),
+                  );
+                },
+                child: const Text('第二章'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WorldPage3()),
+                  );
+                },
+                child: const Text('第三章'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('未来編'),
         backgroundColor: Colors.amber,
+        actions: [
+          IconButton(
+            onPressed: () => _showChapterDialog(),
+            icon: const Icon(Icons.menu),
+          ),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('未来編第1章'),
+            const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
+            Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
+          ],
+        ),
       ),
       body: PageView.builder(
         controller: _pageController,

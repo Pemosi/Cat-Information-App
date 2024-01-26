@@ -88,7 +88,7 @@ class _JapanPage2State extends State<JapanPage2> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // 第一章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const JapanPage()),
@@ -98,7 +98,7 @@ class _JapanPage2State extends State<JapanPage2> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第二章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const JapanPage2()),
@@ -108,7 +108,7 @@ class _JapanPage2State extends State<JapanPage2> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第三章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const JapanPage3()),

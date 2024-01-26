@@ -84,7 +84,7 @@ class _SpacePage3State extends State<SpacePage3> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  // 第一章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage()),
@@ -94,7 +94,7 @@ class _SpacePage3State extends State<SpacePage3> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第二章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage2()),
@@ -104,7 +104,7 @@ class _SpacePage3State extends State<SpacePage3> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // 第三章の処理を追加
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SpacePage3()),
