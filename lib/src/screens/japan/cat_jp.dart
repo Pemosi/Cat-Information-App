@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/japan/cat_japan2.dart';
 import 'package:nyan_cat_war/src/screens/japan/cat_japan3.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:provider/provider.dart';
 
 class JapanPage extends StatefulWidget {
   const JapanPage({Key? key}) : super(key: key);
@@ -80,10 +82,14 @@ class _JapanPageState extends State<JapanPage> {
   final AudioPlayer _bgmPlayer = AudioPlayer();
 
   @override
-  void initState() {
-    super.initState();
-    _bgmPlayer.play(AssetSource('西表島.mp3'));
-    _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('西表島.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
   }
 
   @override
@@ -111,6 +117,7 @@ class _JapanPageState extends State<JapanPage> {
                 },
                 child: const Text('第一章'),
               ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // 第二章の処理を追加
@@ -121,6 +128,7 @@ class _JapanPageState extends State<JapanPage> {
                 },
                 child: const Text('第二章'),
               ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // 第三章の処理を追加

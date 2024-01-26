@@ -69,6 +69,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
                 },
                 child: const Text('宇宙編EXステージ'),
               ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -78,6 +79,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
                 },
                 child: const Text('魔界編EXステージ'),
               ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -87,12 +89,12 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
                 },
                 child: const Text('レジェンドEXステージ'),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  muteButton(),
-                ],
+              const SizedBox(height: 20),
+              const Text(
+                '以下のボタンでBGMを一時停止できます。もう一度押すと再開します。',
+                style: TextStyle(fontSize: 18),
               ),
+              muteButton(),
             ],
           ),
         );
@@ -141,7 +143,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
                 '宇宙の危機！スターフィリバスター',
                 style: TextStyle(
                   fontSize: 26.0,
-                  color: Colors.orange,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
