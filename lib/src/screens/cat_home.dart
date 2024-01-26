@@ -26,21 +26,29 @@ class _CatHomeState extends State<CatHome> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
-        child: Switch(
-          value: bgmController.isBGMPlaying,
-          onChanged: (bool value) {
-            bgmController.toggleBGMPlaying();
-          },
-        ), 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SwitchListTile(
+              title: const Text('BGM'),
+              value: bgmController.isBGMPlaying,
+              onChanged: (bool value) {
+                bgmController.toggleBGMPlaying();
+              },
+              secondary: const Icon(Icons.music_note),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.amber,
         title: const Text(
-          'にゃんこ大戦争のいろんな情報！くん',
+          'にゃんこ大戦争ステージ情報',
           style: TextStyle(
             color: Colors.pink,
             fontSize: 23,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

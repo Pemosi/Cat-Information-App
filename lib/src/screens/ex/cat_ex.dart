@@ -13,8 +13,6 @@ class SpaceSpecialStage extends StatefulWidget {
 class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
   final AudioPlayer _bgmPlayer = AudioPlayer();
 
-  bool isMuted = false;
-
   final List<String> imageUrls = [
     'https://img.game8.jp/3896163/4419891967e03e46d6247e9989e26b76.jpeg/show',
     'https://img.game8.jp/3964885/326dd077a548363fe171e01aacc32e42.png/show',
@@ -36,20 +34,6 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
     _bgmPlayer.stop();
     _bgmPlayer.dispose();
     super.dispose();
-  }
-
-  void onRepeatIconPressed() {
-    setState(() {
-      isMuted = !isMuted;
-      isMuted ? _bgmPlayer.pause() : _bgmPlayer.resume();
-    });
-  }
-
-  IconButton muteButton() {
-    return IconButton(
-      icon: isMuted ? const Icon(Icons.volume_off) : const Icon(Icons.volume_up),
-      onPressed: onRepeatIconPressed,
-    );
   }
 
   _showChapterDialog() {
@@ -90,11 +74,6 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
                 child: const Text('レジェンドEXステージ'),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '以下のボタンでBGMを一時停止できます。もう一度押すと再開します。',
-                style: TextStyle(fontSize: 18),
-              ),
-              muteButton(),
             ],
           ),
         );
