@@ -13,13 +13,15 @@ class LegendStagePage extends StatelessWidget {
     return Scaffold(
       body: FutureBuilder(
         future: FirebaseDatabase.instance
-          .reference()
+          .ref()
           .child("stages")
           .child(stageName)
           .once(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final enemyImages = snapshot.data!.value as List<String>;
+             // snapshot.dataをsnapshot.data!.snapshotに修正
+            final dataSnapshot = snapshot.data!.snapshot; 
+            final enemyImages = dataSnapshot.value as List<String>;
             return ListView.builder(
               itemCount: enemyImages.length,
               itemBuilder: (context, index) {
