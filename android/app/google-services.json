@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "676669175549",
+    "project_id": "cat-application-ac05a",
+    "storage_bucket": "cat-application-ac05a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676669175549:android:f3824c1782829754d43094",
+        "android_client_info": {
+          "package_name": "com.example.nyan_cat_war"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi4IEiCXsQ6qV92vVJsrJsiy1ULloSnoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

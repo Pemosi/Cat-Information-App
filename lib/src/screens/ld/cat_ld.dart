@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/ld/legend_stage_page.dart';
 
 class LegendPage extends StatefulWidget {
   const LegendPage({super.key});
@@ -60,8 +61,6 @@ class _LegendPageState extends State<LegendPage> {
     "古代研究所"
   ];
 
-
-  final PageController _pageController = PageController(viewportFraction: 0.8);
 
   // _showChapterDialog() {
   //   showDialog(
@@ -127,60 +126,21 @@ class _LegendPageState extends State<LegendPage> {
           ],
         ),
       ),
-      body: PageView.builder(
-        controller: _pageController,
+      body: ListView.builder(
         itemCount: legend.length,
         itemBuilder: (context, index) {
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            child: Container(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    legend[index],
-                    style: const TextStyle(fontSize: 24.0),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LegendStagePage(
+                    stageName: legend[index],
                   ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black, backgroundColor: Colors.orange,
-                      elevation: 16,
-                    ),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Dialog(
-                            child: SizedBox(
-                              height: 300.0,
-                              width: 300.0,
-                              child: PageView.builder(
-                                itemCount: legend.length,
-                                itemBuilder: (context, index) {
-                                  return Center(
-                                    child: Text(
-                                      legend[index],
-                                      style: const TextStyle(fontSize: 20.0),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: const Text('ステージ情報をダイアログで表示'),
-                  ),
-                  // if (prefectureImages.containsKey(prefectures[index]))
-                  //   ...prefectureImages[prefectures[index]]!
-                  //       .map((imageName) => Image.network("https://b-cats.info/storage/enemy_icon/enemy_icon_$imageName.png"))
-                  //       .toList(),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
+            child: Text(legend[index]),
           );
         },
       ),
