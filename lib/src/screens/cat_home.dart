@@ -3,7 +3,7 @@ import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/ex/cat_ex.dart';
 import 'package:nyan_cat_war/src/screens/japan/cat_jp.dart';
 // import 'package:nyan_cat_war/src/screens/cat_jp.dart';
-import 'package:nyan_cat_war/src/screens/cat_ld.dart';
+import 'package:nyan_cat_war/src/screens/ld/cat_ld.dart';
 import 'package:nyan_cat_war/src/screens/universe/cat_universe.dart';
 import 'package:nyan_cat_war/src/screens/world/cat_wd.dart';
 import 'package:provider/provider.dart';
