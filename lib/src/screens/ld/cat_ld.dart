@@ -1,4 +1,8 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
+import 'package:nyan_cat_war/src/screens/ld/screen%20transition/prefecture.dart';
+import 'package:provider/provider.dart';
 
 class LegendPage extends StatefulWidget {
   const LegendPage({super.key});
@@ -485,6 +489,32 @@ class _LegendPageState extends State<LegendPage> {
     },
   };
 
+  final AudioPlayer _bgmPlayer = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    prefectureImages.keys.first; 
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('太古の力.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    _bgmPlayer.stop();
+    _bgmPlayer.dispose();
+    super.dispose(); 
+  }
+
   // _showChapterDialog() {
   //   showDialog(
   //     context: context,
@@ -557,7 +587,17 @@ class _LegendPageState extends State<LegendPage> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  
+                  for (var entry in prefectureImages.entries) {
+                    var key = entry.key; // legendリストの文字列
+                    var value = entry.value; // ステージ名・画像の整数データ
+                    print('$key: $value');
+                  }
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => PrefectureImagePage()
+                    )
+                  );
                 },
               child: Text(legend[index]),
               ),
