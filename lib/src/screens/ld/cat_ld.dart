@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
-import 'package:nyan_cat_war/src/screens/ld/screen%20transition/prefecture.dart';
+import 'package:nyan_cat_war/src/screens/ld/screen%20transition/ld_image.dart';
 import 'package:provider/provider.dart';
 
 class LegendPage extends StatefulWidget {
@@ -160,7 +160,7 @@ class _LegendPageState extends State<LegendPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PrefectureImagePage(prefectureName: selectedPrefecture),
+                      builder: (context) => LegendImagePage(prefectureName: selectedPrefecture),
                     ),
                   );
                 },

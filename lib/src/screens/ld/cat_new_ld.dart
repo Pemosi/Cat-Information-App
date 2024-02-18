@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/ld/screen%20transition/new_ld_image.dart';
 
 class NewLegendPage extends StatefulWidget {
   const NewLegendPage({super.key});
@@ -79,7 +80,27 @@ class _NewLegendPageState extends State<NewLegendPage> {
           ],
         ),
       ),
-      
+      body: ListView.builder(
+        itemCount: newlegend.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  String selectedPrefecture = newlegend[index];
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewLegendImagePage(prefectureName: selectedPrefecture),
+                    ),
+                  );
+                },
+              child: Text(newlegend[index]),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

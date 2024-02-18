@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PrefectureImagePage extends StatelessWidget {
+class LegendImagePage extends StatelessWidget {
   final String prefectureName;
 
-  PrefectureImagePage({Key? key, required this.prefectureName}) : super(key: key);
+  LegendImagePage({Key? key, required this.prefectureName}) : super(key: key);
 
   final Map<String, Map<String, List<String>>> prefectureImages = {
-    "伝説のはじまり": {
-      "大地を揺るがす": ["000", "001", "002"],
+    "伝説のはじまり": { //マップの名前
+      "大地を揺るがす": ["000", "001", "002"], //ステージ名と整数の部分は画像のデータ
       "あの恐怖、再び": ["002", "047"],
       "おつかれサンセット": ["000", "001", "002", "013"],
       "メランコリー湿地": ["002", "007", "048"],
@@ -437,8 +437,20 @@ class PrefectureImagePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: Text(prefectureName),
-        centerTitle: true,
+        // actions: [
+        //   IconButton(
+        //     onPressed: () => _showChapterDialog(),
+        //     icon: const Icon(Icons.menu),
+        //   ),
+        // ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('旧レジェンドステージ'),
+            const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
+            Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
+          ],
+        ),
       ),
       body: PageView.builder(
         controller: _pageController,
