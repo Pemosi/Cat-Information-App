@@ -1,5 +1,8 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/ld/screen%20transition/new_ld_image.dart';
+import 'package:provider/provider.dart';
 
 class NewLegendPage extends StatefulWidget {
   const NewLegendPage({super.key});
@@ -10,56 +13,77 @@ class NewLegendPage extends StatefulWidget {
 
 class _NewLegendPageState extends State<NewLegendPage> {
   final List<String> newlegend = [
-    "1.真伝説のはじまり",
-    "2.まんぷく秘境",
-    "3.アドベン大森林",
-    "4.じゃぶじゃぶ旧海道",
-    "5.ワンワン湾",
-    "6.深淵を覗く者",
-    "7.デスメガシティ",
-    "8.無法地帯のオキテ",
-    "9.パラリラ半島",
-    "10.キャットクーデター",
-    "11.桜んぼ島",
-    "12.魂底からの帰化",
-    "13.絶滅海洋タウン",
-    "14.島流しリゾート",
-    "15.まどいの魔道路",
-    "16.天界バル横丁",
-    "17.バトル銭湯",
-    "18.はえぬき三連山",
-    "19.マリン官邸",
-    "20.学園に巣くう悪意",
-    "21.ところてん金鉱",
-    "22.酩酊製鉄所",
-    "23.暴かれし神殿の秘宝",
-    "24.帝政エイジャナイカ",
-    "25.鋼鉄スポーツジム",
-    "26.明星おきの島",
-    "27.眠れる森の何か",
-    "28.ラボラトリ島",
-    "29.忘らるる墓所",
-    "30.始まりを告げる朝",
-    "31.ハッピーラッキー寺院",
-    "32.キネマ怪館",
-    "33.ダイバー都市",
-    "34.ナシゴレン",
-    "35.DNA果樹園",
-    "36.古代樹の迷宮",
-    "37.立ちはだかる者達の城",
-    "38.時空のゆがみ",
-    "39.大厄災のはじまり",
-    "40.魔海域ビックラ港",
-    "41.デッドヒートランド",
-    "42.バラ色の袋小路",
-    "43.千年獣の霊峰",
-    "44.ムーディストビーチ",
-    "45.猫追いしふるさと",
-    "46.海賊王商店街",
-    "47.真なる虚実を紡ぐ道",
-    "48.人類ネコ化計画",
-    "49.古代神樹",
+    "真伝説のはじまり",
+    "まんぷく秘境",
+    "アドベン大森林",
+    "じゃぶじゃぶ旧海道",
+    "ワンワン湾",
+    "深淵を覗く者",
+    "デスメガシティ",
+    "無法地帯のオキテ",
+    "パラリラ半島",
+    "キャットクーデター",
+    "桜んぼ島",
+    "魂底からの帰化",
+    "絶滅海洋タウン",
+    "島流しリゾート",
+    "まどいの魔道路",
+    "天界バル横丁",
+    "バトル銭湯",
+    "はえぬき三連山",
+    "マリン官邸",
+    "学園に巣くう悪意",
+    "ところてん金鉱",
+    "酩酊製鉄所",
+    "暴かれし神殿の秘宝",
+    "帝政エイジャナイカ",
+    "鋼鉄スポーツジム",
+    "明星おきの島",
+    "眠れる森の何か",
+    "ラボラトリ島",
+    "忘らるる墓所",
+    "始まりを告げる朝",
+    "ハッピーラッキー寺院"
+    "キネマ怪館",
+    "ダイバー都市",
+    "ナシゴレン",
+    "DNA果樹園",
+    "古代樹の迷宮",
+    "立ちはだかる者達の城",
+    "時空のゆがみ",
+    "大厄災のはじまり",
+    "魔海域ビックラ港",
+    "デッドヒートランド",
+    "バラ色の袋小路",
+    "千年獣の霊峰",
+    "ムーディストビーチ",
+    "猫追いしふるさと",
+    "海賊王商店街",
+    "真なる虚実を紡ぐ道",
+    "人類ネコ化計画",
+    "古代神樹",
   ];
+
+  final AudioPlayer _bgmPlayer = AudioPlayer();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (Provider.of<BGMController>(context).isBGMPlaying) {
+      _bgmPlayer.play(AssetSource('古代の呪い.mp3'));
+      _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+    } else {
+      _bgmPlayer.stop();
+    }
+  }
+
+  @override
+  void dispose() {
+    _bgmPlayer.stop();
+    _bgmPlayer.dispose();
+    super.dispose(); 
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,26 +104,37 @@ class _NewLegendPageState extends State<NewLegendPage> {
           ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: newlegend.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  String selectedPrefecture = newlegend[index];
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NewLegendImagePage(prefectureName: selectedPrefecture),
-                    ),
-                  );
-                },
-              child: Text(newlegend[index]),
-              ),
-            ],
-          );
-        },
+      body: Container(
+        color: Colors.black,
+        child: ListView.builder(
+          itemCount: newlegend.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.green,
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () {
+                    String selectedPrefecture = newlegend[index];
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewLegendImagePage(prefectureName: selectedPrefecture),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    newlegend[index],
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

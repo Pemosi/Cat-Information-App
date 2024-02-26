@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/search.dart';
 
 class LegendImagePage extends StatelessWidget {
   final String prefectureName;
@@ -7,14 +8,14 @@ class LegendImagePage extends StatelessWidget {
 
   final Map<String, Map<String, List<String>>> prefectureImages = {
     "伝説のはじまり": { //マップの名前
-      "大地を揺るがす": ["000", "001", "002"], //ステージ名と整数の部分は画像のデータ
-      "あの恐怖、再び": ["002", "047"],
-      "おつかれサンセット": ["000", "001", "002", "013"],
-      "メランコリー湿地": ["002", "007", "048"],
-      "ぷるるん広場": ["000", "001", "002", "005"],
-      "愛情のまなざし": ["000", "001", "002", "006"],
-      "牧場の守護者": ["000", "001", "002", "009"],
-      "眠れる獅子": ["000", "001", "002", "003", "006", "015", "046"],
+      "1大地を揺るがす": ["000", "001", "002"], //ステージ名と整数の部分は画像のデータ
+      "2あの恐怖、再び": ["002", "047"],
+      "3おつかれサンセット": ["000", "001", "002", "013"],
+      "4メランコリー湿地": ["002", "007", "048"],
+      "5ぷるるん広場": ["000", "001", "002", "005"],
+      "6愛情のまなざし": ["000", "001", "002", "006"],
+      "7牧場の守護者": ["000", "001", "002", "009"],
+      "8眠れる獅子": ["000", "001", "002", "003", "006", "015", "046"],
     },
     "情熱の国": {
       "1ニャンダルシア": ["000", "001", "002", "047"],
@@ -458,30 +459,33 @@ class LegendImagePage extends StatelessWidget {
         itemBuilder: (context, index) {
           var stageName = prefectureImages[prefectureName]!.keys.elementAt(index);
           var imageNames = prefectureImages[prefectureName]![stageName]!;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                stageName,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchPage(),
+                        ),
+                      );
+                    },
+                    child: const Text("攻略動画を見る"),
+                  ),
+                  Text(
+                    stageName,
+                    style: const TextStyle(fontSize: 24.0),
+                  ),
+                  const SizedBox(height: 10),
+                  ...imageNames.map((imageName) => Image.network("https://b-cats.info/storage/enemy_icon/enemy_icon_$imageName.png")).toList(),
+                ],
               ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: imageNames.map((imageName) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.network(
-                        "https://b-cats.info/storage/enemy_icon/enemy_icon_$imageName.png",
-                        width: 100,
-                        height: 100,
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ],
+            ),
           );
         },
       ),

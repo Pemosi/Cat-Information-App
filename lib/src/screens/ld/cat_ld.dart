@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
+import 'package:nyan_cat_war/src/screens/ld/cat_new_ld.dart';
 import 'package:nyan_cat_war/src/screens/ld/screen%20transition/ld_image.dart';
 import 'package:provider/provider.dart';
 
@@ -84,62 +85,53 @@ class _LegendPageState extends State<LegendPage> {
     super.dispose(); 
   }
 
-  // _showChapterDialog() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('ここから章を変更できます！'),
-  //         content: Column(
-  //           children: [
-  //             ElevatedButton(
-  //               onPressed: () {
-  //                 Navigator.pop(context);
-  //                 Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(builder: (context) => const JapanPage()),
-  //                 );
-  //               },
-  //               child: const Text('第一章'),
-  //             ),
-  //             ElevatedButton(
-  //               onPressed: () {
-  //                 Navigator.pop(context);
-  //                 Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(builder: (context) => const JapanPage2()),
-  //                 );
-  //               },
-  //               child: const Text('第二章'),
-  //             ),
-  //             ElevatedButton(
-  //               onPressed: () {
-  //                 Navigator.pop(context);
-  //                 Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(builder: (context) => const JapanPage3()),
-  //                 );
-  //               },
-  //               child: const Text('第三章'),
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
+  _showChapterDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ここから章を変更できます！'),
+          content: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _bgmPlayer.stop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const NewLegendPage()),
+                  );
+                },
+                child: const Text('新レジェンドステージ'),
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.pop(context);
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => const JapanPage2()),
+              //     );
+              //   },
+              //   child: const Text('第二章'),
+              // ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        // actions: [
-        //   IconButton(
-        //     onPressed: () => _showChapterDialog(),
-        //     icon: const Icon(Icons.menu),
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () => _showChapterDialog(),
+            icon: const Icon(Icons.menu),
+          ),
+        ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -149,26 +141,37 @@ class _LegendPageState extends State<LegendPage> {
           ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: legend.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  String selectedPrefecture = legend[index];
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LegendImagePage(prefectureName: selectedPrefecture),
-                    ),
-                  );
-                },
-              child: Text(legend[index]),
-              ),
-            ],
-          );
-        },
+      body: Container(
+        color: Colors.black,
+        child: ListView.builder(
+          itemCount: legend.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.yellow[700],
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () {
+                    String selectedPrefecture = legend[index];
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LegendImagePage(prefectureName: selectedPrefecture),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    legend[index],
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
