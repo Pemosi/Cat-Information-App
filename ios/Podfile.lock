@@ -27,23 +27,35 @@ PODS:
     - leveldb-library (~> 1.22)
   - FirebaseSharedSwift (10.20.0)
   - Flutter (1.0.0)
+  - flutter_inappwebview_ios (0.0.1):
+    - Flutter
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 5.0)
+  - flutter_inappwebview_ios/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 5.0)
   - GoogleUtilities/Environment (7.12.0):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.12.0):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.12.0)"
   - leveldb-library (1.22.2)
+  - OrderedSet (5.0.0)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.3.1)
+  - volume_control (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - Flutter (from `Flutter`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - volume_control (from `.symlinks/plugins/volume_control/ios`)
 
 SPEC REPOS:
   trunk:
@@ -55,6 +67,7 @@ SPEC REPOS:
     - FirebaseSharedSwift
     - GoogleUtilities
     - leveldb-library
+    - OrderedSet
     - PromisesObjC
 
 EXTERNAL SOURCES:
@@ -66,8 +79,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_database/ios"
   Flutter:
     :path: Flutter
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  volume_control:
+    :path: ".symlinks/plugins/volume_control/ios"
 
 SPEC CHECKSUMS:
   audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
@@ -80,10 +97,13 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 7e838abb62ac2e1a1c792cbeb51df3c4b6607f54
   FirebaseSharedSwift: 2fbf73618288b7a36b2014b957745dcdd781389e
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_inappwebview_ios: 97215cf7d4677db55df76782dbd2930c5e1c1ea0
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
+  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  volume_control: ae2b373c092d9ff5e57f704e9fa5e3098cc16d07
 
 PODFILE CHECKSUM: 7be2f5f74864d463a8ad433546ed1de7e0f29aef
 

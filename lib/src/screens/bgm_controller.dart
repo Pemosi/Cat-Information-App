@@ -9,4 +9,16 @@ class BGMController extends ChangeNotifier {
     _isBGMPlaying = !_isBGMPlaying;
     notifyListeners();
   }
+  
+  // BGMを一時停止するメソッド
+  void pauseBGM() {
+    _isBGMPlaying = false;
+    notifyListeners();
+  }
+
+  // BGMを再開するメソッド
+  void resumeBGM() {
+    _isBGMPlaying = true;
+    notifyListeners();
+  }
 }
