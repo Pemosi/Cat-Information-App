@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/search.dart';
 
 class NewLegendImagePage extends StatelessWidget {
   final String prefectureName;
@@ -344,7 +345,7 @@ class NewLegendImagePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('旧レジェンドステージ'),
+            const Text('新レジェンドステージ'),
             const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
             Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
           ],
@@ -363,6 +364,17 @@ class NewLegendImagePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SearchPage(name: stageName),
+                        ),
+                      );
+                    },
+                    child: const Text("攻略動画を見る"),
+                  ),
                   Text(
                     stageName,
                     style: const TextStyle(fontSize: 24.0),

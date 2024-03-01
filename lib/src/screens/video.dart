@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
+import 'package:provider/provider.dart';
 // import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 // import 'package:provider/provider.dart';
 import 'package:volume_control/volume_control.dart';
@@ -115,6 +117,7 @@ class _NyanCatVideoPageState extends State<NyanCatVideoPage> {
         ),
         leading: IconButton(
           onPressed: () {
+            Provider.of<BGMController>(context, listen: false).resumeBGM();
             Navigator.pop(context);
           }, 
           icon: const Icon(Icons.arrow_back_ios_new)
@@ -125,6 +128,7 @@ class _NyanCatVideoPageState extends State<NyanCatVideoPage> {
           Expanded(
             child: YoutubePlayer(
               controller: _controller,
+              aspectRatio: 16/9,
               showVideoProgressIndicator: false,
               progressIndicatorColor: Colors.amber,
               progressColors: const ProgressBarColors(
