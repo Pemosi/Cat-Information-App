@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class BGMController extends ChangeNotifier {
   bool _isBGMPlaying = true;
+
+  // late String currentBGMPath;
   
   bool get isBGMPlaying => _isBGMPlaying;
 

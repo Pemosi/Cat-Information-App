@@ -1,9 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
-import 'package:provider/provider.dart';
-// import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
-// import 'package:provider/provider.dart';
 import 'package:volume_control/volume_control.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -27,6 +23,7 @@ class _NyanCatVideoPageState extends State<NyanCatVideoPage> {
   double _val = 0.0; // 初期ボリューム値
   double _previousVolume = 0.0; // ミュート前のボリューム値
   Timer? timer;
+  // final AudioPlayer _bgmPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -117,7 +114,6 @@ class _NyanCatVideoPageState extends State<NyanCatVideoPage> {
         ),
         leading: IconButton(
           onPressed: () {
-            Provider.of<BGMController>(context, listen: false).resumeBGM();
             Navigator.pop(context);
           }, 
           icon: const Icon(Icons.arrow_back_ios_new)

@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/video.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   final String name;
-  const SearchPage({super.key, required this.name});
+  final AudioPlayer bgmData;
+
+  const SearchPage({super.key, required this.name, required this.bgmData});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -91,7 +92,7 @@ class _SearchPageState extends State<SearchPage> {
                     leading: Image.network(thumbnailUrl),
                     title: Text(title),
                     onTap: () {
-                      Provider.of<BGMController>(context, listen: false).pauseBGM();
+                      widget.bgmData.stop();
                       Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -1,10 +1,12 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:nyan_cat_war/src/screens/search.dart';
 
 class LegendImagePage extends StatelessWidget {
   final String prefectureName;
+  final AudioPlayer legendBgm;
 
-  LegendImagePage({Key? key, required this.prefectureName}) : super(key: key);
+  LegendImagePage({Key? key, required this.prefectureName,required this.legendBgm}) : super(key: key);
 
   final Map<String, Map<String, List<String>>> prefectureImages = {
     "伝説のはじまり": { //マップの名前
@@ -471,7 +473,7 @@ class LegendImagePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SearchPage(name: stageName),
+                          builder: (context) => SearchPage(name: stageName, bgmData: legendBgm),
                         ),
                       );
                     },

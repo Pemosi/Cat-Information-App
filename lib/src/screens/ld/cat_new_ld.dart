@@ -43,7 +43,7 @@ class _NewLegendPageState extends State<NewLegendPage> {
     "ラボラトリ島",
     "忘らるる墓所",
     "始まりを告げる朝",
-    "ハッピーラッキー寺院"
+    "ハッピーラッキー寺院",
     "キネマ怪館",
     "ダイバー都市",
     "ナシゴレン",
@@ -72,6 +72,8 @@ class _NewLegendPageState extends State<NewLegendPage> {
     if (Provider.of<BGMController>(context).isBGMPlaying) {
       _bgmPlayer.play(AssetSource('古代の呪い.mp3'));
       _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+      // BGMController controller = Provider.of<BGMController>(context); 
+      // controller.currentBGMPath = '古代の呪い.mp3';
     } else {
       _bgmPlayer.stop();
     }
@@ -122,7 +124,7 @@ class _NewLegendPageState extends State<NewLegendPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NewLegendImagePage(prefectureName: selectedPrefecture),
+                        builder: (context) => NewLegendImagePage(prefectureName: selectedPrefecture, newLegendBgm: _bgmPlayer,),
                       ),
                     );
                   },

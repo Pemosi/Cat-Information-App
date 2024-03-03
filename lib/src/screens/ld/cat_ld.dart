@@ -73,6 +73,8 @@ class _LegendPageState extends State<LegendPage> {
     if (Provider.of<BGMController>(context).isBGMPlaying) {
       _bgmPlayer.play(AssetSource('太古の力.mp3'));
       _bgmPlayer.setReleaseMode(ReleaseMode.loop);
+      // BGMController controller = Provider.of<BGMController>(context);
+      // controller.currentBGMPath = '太古の力.mp3';
     } else {
       _bgmPlayer.stop();
     }
@@ -159,7 +161,7 @@ class _LegendPageState extends State<LegendPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LegendImagePage(prefectureName: selectedPrefecture),
+                        builder: (context) => LegendImagePage(prefectureName: selectedPrefecture, legendBgm: _bgmPlayer),
                       ),
                     );
                   },
