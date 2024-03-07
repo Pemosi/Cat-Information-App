@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/Various_stages/super_beast_home.dart';
 import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/ex/cat_ex.dart';
 import 'package:nyan_cat_war/src/screens/japan/cat_jp.dart';
@@ -17,11 +18,42 @@ class CatHome extends StatefulWidget {
 
 class _CatHomeState extends State<CatHome> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-   late BGMController bgmController;  
+   late BGMController bgmController;
 
   @override
   Widget build(BuildContext context) {
     bgmController = Provider.of<BGMController>(context);
+
+    void stageChange(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('ステージ変更'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  
+                }, 
+                child: const Text("降臨ステージ"),
+              ),
+              const SizedBox(width: 8.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SuperBeastPage()),
+                  );
+                },
+                child: const Text('超獣ステージ'),
+              ),
+              const SizedBox(width: 8.0),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       key: _scaffoldKey,
@@ -37,6 +69,13 @@ class _CatHomeState extends State<CatHome> {
               },
               secondary: const Icon(Icons.music_note),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                stageChange(context);
+              },
+              child: const Text("他のステージ情報を見る"),
+            )
           ],
         ),
       ),
