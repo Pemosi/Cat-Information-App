@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nyan_cat_war/src/screens/Various_stages/stage/asibini_desert.dart';
-import 'package:nyan_cat_war/src/screens/Various_stages/stage/gianforet_volcano.dart';
+import 'package:nyan_cat_war/src/screens/Various_stages/stage/asibini.dart';
+import 'package:nyan_cat_war/src/screens/Various_stages/stage/gianforet.dart';
 import 'package:nyan_cat_war/src/screens/Various_stages/stage/jungle.dart';
 
 class SuperBeastPage extends StatefulWidget {
@@ -47,7 +47,7 @@ class _SuperBeastPageState extends State<SuperBeastPage> {
                 child: Image.asset(
                   'assets/stage_images/超獣ステージ/ghapra.png',
                   width: 400,
-                  height: 400,
+                  height: 320,
                 ),
               ),
               GestureDetector(
@@ -60,7 +60,7 @@ class _SuperBeastPageState extends State<SuperBeastPage> {
                 child: Image.asset(
                   'assets/stage_images/超獣ステージ/asibini.png',
                   width: 400,
-                  height: 400,
+                  height: 320,
                 ),
               ),
               GestureDetector(
@@ -73,7 +73,7 @@ class _SuperBeastPageState extends State<SuperBeastPage> {
                 child: Image.asset(
                   'assets/stage_images/超獣ステージ/gianfore.png',
                   width: 400,
-                  height: 400,
+                  height: 320,
                 ),
               ),
             ],

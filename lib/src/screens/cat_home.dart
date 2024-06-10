@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/Festbaru/nyan_tou.dart';
 import 'package:nyan_cat_war/src/screens/Various_stages/super_beast_home.dart';
+import 'package:nyan_cat_war/src/screens/background_audio/nyan_cat_bgm.dart';
 import 'package:nyan_cat_war/src/screens/bgm_controller.dart';
 import 'package:nyan_cat_war/src/screens/ex/cat_ex.dart';
 import 'package:nyan_cat_war/src/screens/japan/cat_jp.dart';
@@ -31,24 +33,50 @@ class _CatHomeState extends State<CatHome> {
           return AlertDialog(
             title: const Text('ステージ変更'),
             actions: [
-              ElevatedButton(
-                onPressed: () {
-                  
-                }, 
-                child: const Text("降臨ステージ"),
+              Center(
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        
+                      }, 
+                      child: const Text("降臨ステージ"),
+                    ),
+                    const SizedBox(width: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const SuperBeastPage()),
+                        );
+                      },
+                      child: const Text('超獣ステージ'),
+                    ),
+                    const SizedBox(width: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const TowerPage()),
+                        );
+                      },
+                      child: const Text('風雲にゃんこ塔'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const BackgroundAudio()),
+                        );
+                      },
+                      child: const Text('BGM鑑賞ページ(まだテスト)'),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 8.0),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SuperBeastPage()),
-                  );
-                },
-                child: const Text('超獣ステージ'),
-              ),
-              const SizedBox(width: 8.0),
             ],
           );
         },

@@ -20,6 +20,10 @@ dependencies:
   firebase_database: ^10.4.4
   youtube_player_flutter: ^9.0.0
   volume_control: ^0.1.5
+  just_audio: ^0.9.38
+  audio_service: ^0.18.13
+  get_it: ^7.7.0
+  audio_video_progress_bar: ^2.0.3
 
 dev_dependencies:
   flutter_test:
