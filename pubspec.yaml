@@ -24,6 +24,9 @@ dependencies:
   audio_service: ^0.18.13
   get_it: ^7.7.0
   audio_video_progress_bar: ^2.0.3
+  flutter_image: ^4.1.11
+  cached_network_image: ^3.3.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -34,5 +37,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/bgm/
     - assets/stage_images/
     - assets/stage_images/超獣ステージ/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "/Users/muratareo/Desktop/nyan_cat_war/assets/gokuenki.png"

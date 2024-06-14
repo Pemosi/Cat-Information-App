@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nyan_cat_war/src/screens/Descending/hell.dart';
 import 'package:nyan_cat_war/src/screens/Festbaru/nyan_tou.dart';
 import 'package:nyan_cat_war/src/screens/Various_stages/super_beast_home.dart';
 import 'package:nyan_cat_war/src/screens/background_audio/nyan_cat_bgm.dart';
@@ -38,7 +39,11 @@ class _CatHomeState extends State<CatHome> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const HellPage()),
+                        );
                       }, 
                       child: const Text("降臨ステージ"),
                     ),
@@ -201,6 +206,22 @@ class _CatHomeState extends State<CatHome> {
                     'assets/stage_images/ex.png', // 画像のパスを指定してください
                     width: 280, // 画像の幅
                     height: 280, // 画像の高さ
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HellPage()),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Image.asset(
+                    'assets/stage_images/降臨祭.png', // 画像のパスを指定してください
+                    width: 380, // 画像の幅
+                    height: 380, // 画像の高さ
                   ),
                 ),
               ),

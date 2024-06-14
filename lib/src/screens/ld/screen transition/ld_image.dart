@@ -435,6 +435,44 @@ class LegendImagePage extends StatelessWidget {
 
   final PageController _pageController = PageController(viewportFraction: 0.8);
 
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.all(10),
+            child: Image.asset('assets/nyanma.gif'),
+          ),
+        );
+      },
+    );
+  }
+
+  void _navigateToSearchPage(BuildContext context, String stageName, dynamic bgmData) async {
+    _showLoadingDialog(context);
+    // Simulate a delay or perform an async task before navigation
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Dismiss the loading dialog
+    Navigator.of(context).pop();
+
+    // Navigate to the next page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchPage(name: stageName, bgmData: bgmData),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -451,7 +489,7 @@ class LegendImagePage extends StatelessWidget {
           children: [
             const Text('旧レジェンドステージ'),
             const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
-            Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
+            Flexible(child: Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0)),
           ],
         ),
       ),
@@ -470,12 +508,7 @@ class LegendImagePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SearchPage(name: stageName, bgmData: legendBgm),
-                        ),
-                      );
+                      _navigateToSearchPage(context, stageName, legendBgm);
                     },
                     child: const Text("攻略動画を見る"),
                   ),

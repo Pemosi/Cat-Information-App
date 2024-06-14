@@ -138,7 +138,7 @@ class _JapanPage2State extends State<JapanPage2> {
           children: [
             const Text('日本編第2章'),
             const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
-            Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
+            Flexible(child: Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0)),
           ],
         ),
       ),

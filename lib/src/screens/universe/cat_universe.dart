@@ -83,7 +83,7 @@ class _SpacePageState extends State<SpacePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (Provider.of<BGMController>(context).isBGMPlaying) {
-      _bgmPlayer.play(AssetSource('ビックバン組曲.mp3'));
+      _bgmPlayer.play(AssetSource('bgm/ビックバン組曲.mp3'));
       _bgmPlayer.setReleaseMode(ReleaseMode.loop);
     } else {
       _bgmPlayer.stop();
@@ -157,7 +157,7 @@ class _SpacePageState extends State<SpacePage> {
           children: [
             const Text('宇宙編第1章'),
             const SizedBox(width: 8.0),  // テキストと画像の間にスペースを追加
-            Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0),  // 画像のパスやサイズは適切に変更してください
+            Flexible(child: Image.network('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png', height: 50.0, width: 50.0)),
           ],
         ),
       ),

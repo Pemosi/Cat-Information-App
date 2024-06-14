@@ -14,42 +14,43 @@ class BackgroundAudioScreenState extends ChangeNotifier {
   AudioState audioState = AudioState.paused;
   late StreamSubscription _playbackSubscription;
   late StreamSubscription _progressBarSubscription;
+  MediaItem? _currentMediaItem;  // 現在再生中の曲
 
   final AudioServiceHandler _handler = getIt<AudioServiceHandler>();
 
-  // for test
+  List<MediaItem> get playlist => _playlist;
+
   static final List<MediaItem> _playlist = [
     MediaItem(
-      id: 'assets/スターフィリバスター.mp3',
+      id: 'assets/bgm/スターフィリバスター.mp3',
       album: "にゃんこBGM",
       title: "宇宙の危機！スターフィリバスター",
       artist: "PONOS",
-      artUri: Uri.parse('assets/宇宙.png'),
+      artUri: Uri.parse('https://image02.seesaawiki.jp/b/i/battlecatswiki/ef44967993c6f9df.png'),
     ),
     MediaItem(
-      id: 'assets/消滅都市.mp3',
+      id: 'assets/bgm/消滅都市.mp3',
       album: "にゃんこBGM",
       title: "消滅都市 X にゃんこ大戦争コラボ",
       artist: "PONOS",
-      artUri: Uri.parse('assets/宇宙.png'),
+      artUri: Uri.parse('https://i.pinimg.com/originals/fa/f1/c9/faf1c9c66bf0bd67a87f0a181ea21122.png'),
     ),
     // 他の曲も追加
   ];
 
-  /* --- INITIALIZE --- */
   void init() {
     _handler.initPlayer(_playlist);
     _listenToPlaybackState();
     _listenForProgressBarState();
   }
 
-  /* --- SUBSCRIBE --- */
-
   void _listenToPlaybackState() {
     _playbackSubscription =
         _handler.playbackState.listen((PlaybackState state) {
       debugPrint('current state:${state.processingState}');
       debugPrint('playing:${state.playing}');
+      _currentMediaItem = _handler.mediaItem.value;
+      notifyListeners();  // 再生中の曲が変わった時にUIを更新する
 
       if (isLoadingState(state)) {
         setAudioState(AudioState.loading);
@@ -79,7 +80,6 @@ class BackgroundAudioScreenState extends ChangeNotifier {
     ).listen((ProgressBarState state) => setProgressBarState(state));
   }
 
-  /* --- UTILITY METHODS --- */
   bool isLoadingState(PlaybackState state) {
     return state.processingState == AudioProcessingState.loading ||
         state.processingState == AudioProcessingState.buffering;
@@ -110,8 +110,6 @@ class BackgroundAudioScreenState extends ChangeNotifier {
     super.dispose();
   }
 
-  /* --- STATE CONTROL --- */
-
   void setAudioState(AudioState state) {
     audioState = state;
     notifyListeners();
@@ -122,7 +120,6 @@ class BackgroundAudioScreenState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /* --- PLAYER CONTROL  --- */
   void play() => _handler.play();
 
   void pause() => _handler.pause();
@@ -131,9 +128,17 @@ class BackgroundAudioScreenState extends ChangeNotifier {
 
   void stop() => _handler.stop();
 
-  void skipToPrevious() => _handler.skipToPrevious();
+  void playTrack(MediaItem item) {
+    _handler.stop();  // 現在の再生を停止
+    _handler.initPlayer([item]);  // 選択された曲を再生
+    _handler.play();
+  }
 
   void skipToNext() => _handler.skipToNext();
+
+  void skipToPrevious() => _handler.skipToPrevious();
+
+  MediaItem? getCurrentTrack() => _currentMediaItem;  // 現在再生中の曲を取得
 }
 
 class ProgressBarState {

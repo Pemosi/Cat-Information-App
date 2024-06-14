@@ -1,4 +1,6 @@
+// import 'package:audio_service/audio_service.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nyan_cat_war/src/screens/background_audio/background_audio_screen_state.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +83,12 @@ class _AudioPlayerUI extends StatelessWidget {
               ),
             ],
           ),
+          // CachedNetworkImage(
+          //   imageUrl: 'https://img.gifmagazine.net/gifmagazine/images/5181546/180.gif?16323877231632387734',
+          //   height: 200,
+          //   width: 200,
+          // ),
+          Image.asset('assets/nyanma.gif', height: 200, width: 200),
         ],
       ),
     );

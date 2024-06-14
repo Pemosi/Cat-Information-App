@@ -28,7 +28,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (Provider.of<BGMController>(context).isBGMPlaying) {
-      _bgmPlayer.play(AssetSource('スターフィリバスター.mp3'));
+      _bgmPlayer.play(AssetSource('bgm/スターフィリバスター.mp3'));
       _bgmPlayer.setReleaseMode(ReleaseMode.loop);
     } else {
       _bgmPlayer.stop();
@@ -115,7 +115,7 @@ class _SpaceSpecialStageState extends State<SpaceSpecialStage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              'assets/宇宙.png',
+              'assets/utyu.png',
             ),
             fit: BoxFit.cover,
           ),
